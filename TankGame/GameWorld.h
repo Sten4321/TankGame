@@ -10,6 +10,8 @@
 #include "GameObject.h"
 #include "SFML/Graphics.hpp"
 
+#include "SpriteRenderer.h"
+
 class GameWorld
 {
 private:
@@ -20,6 +22,8 @@ private:
 	void Remove();
 	void Add();
 	std::vector<GameObject*> * gameobjects = new std::vector<GameObject*>;
+	std::vector<GameObject*> * addGameobjects = new std::vector<GameObject*>;
+	std::vector<GameObject*> * removeGameobjects = new std::vector<GameObject*>;
 	/*Vector since i need a container of unspecified size,
 	that will grow (or shrink) as needed*/
 public:

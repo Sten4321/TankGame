@@ -19,7 +19,7 @@ public:
 	that may or may not grow (or shrink)*/
 	GameObject(sf::Vector2f position = sf::Vector2f(0, 0));
 	virtual ~GameObject();
-	void Add(Component* component);//add Component
+	void AddComponent(Component* component);//add Component
 	void Update();
 	void Draw(sf::RenderWindow * window);
 

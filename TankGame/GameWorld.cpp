@@ -12,6 +12,15 @@ void GameWorld::Remove()
 
 void GameWorld::Add()
 {
+	if (addGameobjects->size() > 0)
+	{
+		std::vector<GameObject*>::iterator it;
+		for (it = addGameobjects->begin(); it != addGameobjects->end(); it++)
+		{
+			gameobjects->push_back(*it);
+		}
+		addGameobjects->clear();
+	}
 }
 
 //Draws out the program
@@ -48,6 +57,10 @@ void GameWorld::GameLoop()
 //Constructor starts the gameloop and sets the window used for drawing
 GameWorld::GameWorld(sf::RenderWindow * window)
 {
+	GameObject * testObject = new GameObject();
+	testObject->AddComponent(new SpriteRenderer(testObject));
+	addGameobjects->push_back(testObject);
+
 	this->window = window;
 	GameLoop();
 }
@@ -55,13 +68,9 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 GameWorld::~GameWorld()
 {
-	std::vector<GameObject*>::iterator it;
-	for (it = gameobjects->begin(); it != gameobjects->end(); it++)/*call deconstructer on all components,
-																 to make sure it is deleted and no causing memory leaks*/
+	for (int i = 0; i < gameobjects->size(); i++)
 	{
-		delete (*it);
+		delete (*gameobjects)[i];
 	}
 	gameobjects->clear();
-	delete gameobjects;//don't know if these 2 lines are necerssary
-	gameobjects = nullptr;
 }

@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 //Adds an component to the list of components
-void GameObject::Add(Component * addComponent)
+void GameObject::AddComponent(Component * addComponent)
 {
 	if (components)
 	{
@@ -39,19 +39,16 @@ void GameObject::Draw(sf::RenderWindow * window)
 GameObject::GameObject(sf::Vector2f position)
 	: Component(this)
 {
-	Add(new Transform(position, this));//adds a position to the object
+	AddComponent(new Transform(position, this));//adds a position to the object
 }
 
 
 GameObject::~GameObject()
 {
-	std::vector<Component*>::iterator it;
-	for (it = components->begin(); it != components->end(); it++)/*call deconstructer on all components,
-																 to make sure it is deleted and no causing memory leaks*/
+	for (int i = 0; i < components->size(); i++)/*call deconstructer on all components,
+											to make sure it is deleted and not causing memory leaks*/
 	{
-		delete (*it);
+		delete (*components)[i];
 	}
 	components->clear();
-	delete components;//don't know if these 2 lines are necerssary
-	components = nullptr;
 }
