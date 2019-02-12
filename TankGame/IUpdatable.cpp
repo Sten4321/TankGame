@@ -10,3 +10,7 @@ IUpdatable::IUpdatable()
 IUpdatable::~IUpdatable()
 {
 }
+
+void IUpdatable::Update()
+{
+}

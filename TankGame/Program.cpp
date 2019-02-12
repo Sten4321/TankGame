@@ -4,15 +4,15 @@
 #include <algorithm>
 #include "SFML/Graphics.hpp"
 #include "GameWorld.h"
-using namespace std;
-using namespace sf;
+
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")//no console window
 
 int main()
 {
-	RenderWindow* window = new RenderWindow(VideoMode(800, 600), "Tank Game");
+	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(800, 600), "Tank Game");
 	if (window == NULL)//was the window created?
 	{
-		cout << "Failed to start window";
+		std::cout << "Failed to start window";
 		return -1;
 	}
 	window->setFramerateLimit(60);//sets the fps to a limmit of 60

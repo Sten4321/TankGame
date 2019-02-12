@@ -1,2 +1,8 @@
 ﻿  GameObject.cpp
+  GameWorld.cpp
+  IDrawable.cpp
+  IUpdatable.cpp
+  Program.cpp
+  SpriteRenderer.cpp
+  Generating Code...
   TankGame.vcxproj -> C:\Users\Stefan\source\repos\TankGame\Debug\TankGame.exe

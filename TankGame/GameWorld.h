@@ -9,19 +9,21 @@
 #include "Map.h"
 #include "GameObject.h"
 #include "SFML/Graphics.hpp"
-using namespace std;
-using namespace sf;
 
 class GameWorld
 {
 private:
-	RenderWindow * window = nullptr;
+	sf::RenderWindow * window = nullptr;
 	void GameLoop();
 	void Draw();
 	void Update();
-
+	void Remove();
+	void Add();
+	std::vector<GameObject*> * gameobjects = new std::vector<GameObject*>;
+	/*Vector since i need a container of unspecified size,
+	that will grow (or shrink) as needed*/
 public:
-	GameWorld(RenderWindow * window);
+	GameWorld(sf::RenderWindow * window);
 	~GameWorld();
 };
 
