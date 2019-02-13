@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "Map.h"
 #include "GameObject.h"
 #include "SFML/Graphics.hpp"
 
+#include "TextureManager.h"
 #include "SpriteRenderer.h"
 
 class GameWorld
@@ -21,6 +21,8 @@ private:
 	void Update();
 	void Remove();
 	void Add();
+	void LoadTextures();
+	sf::Sprite BackGround;
 	std::vector<GameObject*> * gameobjects = new std::vector<GameObject*>;
 	std::vector<GameObject*> * addGameobjects = new std::vector<GameObject*>;
 	std::vector<GameObject*> * removeGameobjects = new std::vector<GameObject*>;
@@ -29,6 +31,7 @@ private:
 public:
 	GameWorld(sf::RenderWindow * window);
 	~GameWorld();
+	TextureManager& texmgr = TextureManager::getInstance();
 };
 
 #endif

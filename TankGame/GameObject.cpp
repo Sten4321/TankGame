@@ -35,6 +35,21 @@ void GameObject::Draw(sf::RenderWindow * window)
 	}
 }
 
+//Returns a component if it exist
+Component* GameObject::getComponent(std::string componentName)
+{
+	std::string comparestring = "class " + componentName;
+	std::vector<Component*>::iterator it;
+	for (it = components->begin(); it != components->end(); it++)
+	{
+		if (typeid(**it).name() == comparestring)
+		{
+			return (*it);
+		}
+	}
+	return nullptr;
+}
+
 //Constructer for GameObject
 GameObject::GameObject(sf::Vector2f position)
 	: Component(this)
@@ -45,10 +60,13 @@ GameObject::GameObject(sf::Vector2f position)
 
 GameObject::~GameObject()
 {
-	for (int i = 0; i < components->size(); i++)/*call deconstructer on all components,
-											to make sure it is deleted and not causing memory leaks*/
+	if (components)
 	{
-		delete (*components)[i];
+		std::vector<Component*>::iterator it;
+		for (it = components->begin(); it != components->end(); it++)
+		{
+			delete (*it);
+		}
+		components->clear();
 	}
-	components->clear();
 }

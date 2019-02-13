@@ -1,15 +1,25 @@
 #include "GameWorld.h"
 
-//Updates the game
-void GameWorld::Update()
+//Loads Textures into the game
+void GameWorld::LoadTextures()
 {
-
+	texmgr.loadTexture("PlayerSprite", "Data/PlayerTank.png");
+	texmgr.loadTexture("Background", "Data/Background.png");
+	texmgr.loadTexture("Error", "Data/Error.png");
 }
 
+//Removes Objects from the game
 void GameWorld::Remove()
 {
+	std::vector<GameObject*>::iterator it;
+	for (it = removeGameobjects->begin(); it != removeGameobjects->end(); it++)
+	{
+		//TODO: Delete objects
+	}
+	removeGameobjects->clear();
 }
 
+//Adds objects to the game
 void GameWorld::Add()
 {
 	if (addGameobjects->size() > 0)
@@ -23,6 +33,17 @@ void GameWorld::Add()
 	}
 }
 
+//Updates the game
+void GameWorld::Update()
+{
+	std::vector<GameObject*>::iterator it;
+	for (it = gameobjects->begin(); it != gameobjects->end(); it++)
+	{
+		(*it)->Update();
+	}
+}
+
+
 //Draws out the program
 void GameWorld::Draw()
 {
@@ -35,9 +56,19 @@ void GameWorld::Draw()
 			window->close();
 		}
 	}
-
 	//Clear the screen (fill it with black color)
 	window->clear(sf::Color(0, 255, 255, 255));
+
+	//BackGround
+	window->draw(BackGround);
+
+	//Draw here
+	std::vector<GameObject*>::iterator it;
+	for (it = gameobjects->begin(); it != gameobjects->end(); it++)
+	{
+		(*it)->Draw(window);
+	}
+
 	//Display window contents on screen
 	window->display();
 }
@@ -57,20 +88,28 @@ void GameWorld::GameLoop()
 //Constructor starts the gameloop and sets the window used for drawing
 GameWorld::GameWorld(sf::RenderWindow * window)
 {
-	GameObject * testObject = new GameObject();
-	testObject->AddComponent(new SpriteRenderer(testObject));
+	this->window = window;
+	LoadTextures();
+	BackGround.setTexture(texmgr.getRef("Background"));
+
+
+	GameObject * testObject = new GameObject(sf::Vector2f(250, 250));
+	testObject->AddComponent(new SpriteRenderer(testObject, "Error", 30.f));
 	addGameobjects->push_back(testObject);
 
-	this->window = window;
 	GameLoop();
 }
 
 
 GameWorld::~GameWorld()
 {
-	for (int i = 0; i < gameobjects->size(); i++)
+	if (gameobjects)
 	{
-		delete (*gameobjects)[i];
+		std::vector<GameObject*>::iterator it;
+		for (it = gameobjects->begin(); it != gameobjects->end(); it++)
+		{
+			delete (*it);
+		}
+		gameobjects->clear();
 	}
-	gameobjects->clear();
 }

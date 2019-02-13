@@ -1,3 +1,2 @@
-﻿  GameWorld.cpp
-c:\users\stefan\source\repos\tankgame\tankgame\gameworld.cpp(77): warning C4018: '<': signed/unsigned mismatch
+﻿  Player.cpp
   TankGame.vcxproj -> C:\Users\Stefan\source\repos\TankGame\Debug\TankGame.exe

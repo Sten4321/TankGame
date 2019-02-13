@@ -124,9 +124,10 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="IUpdatable.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +136,9 @@
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IUpdatable.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

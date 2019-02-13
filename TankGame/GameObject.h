@@ -22,7 +22,7 @@ public:
 	void AddComponent(Component* component);//add Component
 	void Update();
 	void Draw(sf::RenderWindow * window);
-
+	Component* getComponent(std::string componentName);
 };
 #endif
 
