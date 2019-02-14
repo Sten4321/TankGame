@@ -18,11 +18,12 @@ private:
 	void UpdateDrawPos();
 	float rotation = 0;
 public:
-	SpriteRenderer(GameObject * gamobject = nullptr, std::string spriteName = "Error", float rotation = 0);
+	SpriteRenderer(GameObject * gamobject = nullptr, std::string spriteName = "Error", sf::IntRect spriteRect = sf::IntRect(0, 0, 64, 64), float rotation = 0);
 	~SpriteRenderer();
 
 	float GetRotation();
 	void SetRotation(float rotationChange);
+	sf::IntRect spriteRect;
 
 	// Inherited via IDrawable
 	virtual void Draw(sf::RenderWindow * window) override;

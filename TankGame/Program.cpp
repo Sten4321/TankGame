@@ -9,7 +9,7 @@
 
 int main()
 {
-	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(800, 600), "Tank Game");
+	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Tank Game");
 	if (window == NULL)//was the window created?
 	{
 		std::cout << "Failed to start window";

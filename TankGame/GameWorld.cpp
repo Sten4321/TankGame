@@ -97,7 +97,7 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 
 	GameObject * PlayerObj = new GameObject(sf::Vector2f(250, 250));
-	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", 30.f));
+	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", sf::IntRect(0, 0, 28, 40), 30.f));
 	PlayerObj->AddComponent(new Player(PlayerObj));
 	addGameobjects->push_back(PlayerObj);
 

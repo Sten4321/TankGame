@@ -19,10 +19,13 @@ void SpriteRenderer::Draw(sf::RenderWindow * window)
 }
 
 
-SpriteRenderer::SpriteRenderer(GameObject * gameobject, std::string spriteName, float rotation) : Component(gameobject)
+SpriteRenderer::SpriteRenderer(GameObject * gameobject, std::string spriteName, sf::IntRect spriteRect, float rotation) : Component(gameobject)
 {
 	this->rotation = rotation;
+	this->spriteRect = spriteRect;
+
 	sprite.setTexture(texmgr.getRef(spriteName));
+	sprite.setTextureRect(spriteRect);
 	sprite.setOrigin(sf::Vector2f(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2));
 	Update(sf::seconds(0.1f));//Update on creation
 }
