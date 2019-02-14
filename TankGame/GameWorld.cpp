@@ -34,12 +34,12 @@ void GameWorld::Add()
 }
 
 //Updates the game
-void GameWorld::Update()
+void GameWorld::Update(sf::Time deltaTime)
 {
 	std::vector<GameObject*>::iterator it;
 	for (it = gameobjects->begin(); it != gameobjects->end(); it++)
 	{
-		(*it)->Update();
+		(*it)->Update(deltaTime);
 	}
 }
 
@@ -76,9 +76,12 @@ void GameWorld::Draw()
 //Gameloop handles what happens
 void GameWorld::GameLoop()
 {
+	sf::Clock deltaClock;
 	while (window->isOpen())
 	{
-		Update();
+		sf::Time deltaTime = deltaClock.getElapsedTime();
+		deltaClock.restart();
+		Update(deltaTime);
 		Draw();
 		Remove();
 		Add();
@@ -93,9 +96,10 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 	BackGround.setTexture(texmgr.getRef("Background"));
 
 
-	GameObject * testObject = new GameObject(sf::Vector2f(250, 250));
-	testObject->AddComponent(new SpriteRenderer(testObject, "Error", 30.f));
-	addGameobjects->push_back(testObject);
+	GameObject * PlayerObj = new GameObject(sf::Vector2f(250, 250));
+	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", 30.f));
+	PlayerObj->AddComponent(new Player(PlayerObj));
+	addGameobjects->push_back(PlayerObj);
 
 	GameLoop();
 }

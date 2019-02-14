@@ -3,10 +3,10 @@
 
 void SpriteRenderer::UpdateDrawPos()
 {
-	sprite.setPosition(((dynamic_cast<Transform*>((*Component::gameObject).getComponent("Transform")))->position));
+	sprite.setPosition(GetComponent(Transform)->position);
 }
 
-void SpriteRenderer::Update()
+void SpriteRenderer::Update(sf::Time deltaTime)
 {
 	UpdateDrawPos();
 	sprite.setRotation(rotation);
@@ -23,10 +23,29 @@ SpriteRenderer::SpriteRenderer(GameObject * gameobject, std::string spriteName, 
 {
 	this->rotation = rotation;
 	sprite.setTexture(texmgr.getRef(spriteName));
-	Update();//Update on creation
+	sprite.setOrigin(sf::Vector2f(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2));
+	Update(sf::seconds(0.1f));//Update on creation
 }
 
 
 SpriteRenderer::~SpriteRenderer()
 {
+}
+
+float SpriteRenderer::GetRotation()
+{
+	return rotation;
+}
+
+void SpriteRenderer::SetRotation(float rotationChange)
+{
+	rotation = rotationChange;
+	if (rotation > 360)
+	{
+		rotation = 0;
+	}
+	if (rotation < 0)
+	{
+		rotation = 360;
+	}
 }

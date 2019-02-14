@@ -11,6 +11,6 @@ IUpdatable::~IUpdatable()
 {
 }
 
-void IUpdatable::Update()
+void IUpdatable::Update(sf::Time deltaTime)
 {
 }

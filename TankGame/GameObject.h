@@ -20,7 +20,7 @@ public:
 	GameObject(sf::Vector2f position = sf::Vector2f(0, 0));
 	virtual ~GameObject();
 	void AddComponent(Component* component);//add Component
-	void Update();
+	void Update(sf::Time deltaTime);
 	void Draw(sf::RenderWindow * window);
 	Component* getComponent(std::string componentName);
 };

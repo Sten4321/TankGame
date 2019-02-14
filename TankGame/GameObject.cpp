@@ -10,14 +10,14 @@ void GameObject::AddComponent(Component * addComponent)
 }
 
 //Calls the update method in the components that can be updated
-void GameObject::Update()
+void GameObject::Update(sf::Time deltaTime)
 {
 	std::vector<Component*>::iterator it;
 	for (it = components->begin(); it != components->end(); it++)
 	{
 		if (dynamic_cast<IUpdatable*>((*it)))
 		{
-			dynamic_cast<IUpdatable*>((*it))->Update();
+			dynamic_cast<IUpdatable*>((*it))->Update(deltaTime);
 		}
 	}
 }

@@ -11,6 +11,7 @@
 
 #include "TextureManager.h"
 #include "SpriteRenderer.h"
+#include "Player.h"
 
 class GameWorld
 {
@@ -18,7 +19,7 @@ private:
 	sf::RenderWindow * window = nullptr;
 	void GameLoop();
 	void Draw();
-	void Update();
+	void Update(sf::Time deltaTime);
 	void Remove();
 	void Add();
 	void LoadTextures();
