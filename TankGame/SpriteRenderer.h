@@ -8,6 +8,7 @@
 #include "SFML/Graphics.hpp"
 #include "Component.h"
 #include "TextureManager.h"
+#include "AnimationHandler.h"
 #include "GameObject.h"
 #define GetComponent(x) (dynamic_cast<x*>((*Component::gameObject).getComponent(#x)))
 
@@ -30,6 +31,7 @@ public:
 
 	//Implement acess to textures
 	TextureManager& texmgr = TextureManager::getInstance();
+	AnimationHandler AnimationHnd;
 
 	// Inherited via IUpdatable
 	virtual void Update(sf::Time deltaTime) override;

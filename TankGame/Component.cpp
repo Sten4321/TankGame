@@ -10,5 +10,5 @@ Component::Component(GameObject * gameObject)
 
 Component::~Component()
 {
-	delete gameObject;
+
 }

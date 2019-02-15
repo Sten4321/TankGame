@@ -2,9 +2,21 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 
+void Player::AddAnimations()
+{
+	Animation staticAn = Animation(0, 0, 1.0f);
+	Animation idleAn = Animation(0, 4, 0.08f);
+	Animation DriveAn = Animation(0, 4, 0.08f);
+	GetComponent(SpriteRenderer)->AnimationHnd.addAnim(staticAn);
+	GetComponent(SpriteRenderer)->AnimationHnd.addAnim(idleAn);
+	GetComponent(SpriteRenderer)->AnimationHnd.addAnim(DriveAn);
+}
+
 Player::Player(GameObject * gameobject) : Component(gameobject)
 {
 	rotation = GetComponent(SpriteRenderer)->GetRotation();
+	AddAnimations();
+	GetComponent(SpriteRenderer)->AnimationHnd.changeAnim(1);
 }
 
 

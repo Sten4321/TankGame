@@ -19,6 +19,7 @@ private:
 	int movespeed = 120;
 	float rotateSpeed = 1.7f;
 	const double PI = 3.1415927;
+	void AddAnimations();
 public:
 	Player(GameObject * gameobject = nullptr);
 	~Player();

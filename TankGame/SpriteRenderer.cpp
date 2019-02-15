@@ -8,8 +8,12 @@ void SpriteRenderer::UpdateDrawPos()
 
 void SpriteRenderer::Update(sf::Time deltaTime)
 {
+
 	UpdateDrawPos();
 	sprite.setRotation(rotation);
+	AnimationHnd.update(deltaTime);
+	// Update the sprite
+	this->sprite.setTextureRect(this->AnimationHnd.bounds);
 }
 
 //Draws Sprites out to screen
@@ -23,6 +27,7 @@ SpriteRenderer::SpriteRenderer(GameObject * gameobject, std::string spriteName, 
 {
 	this->rotation = rotation;
 	this->spriteRect = spriteRect;
+	AnimationHnd = AnimationHandler(spriteRect);
 
 	sprite.setTexture(texmgr.getRef(spriteName));
 	sprite.setTextureRect(spriteRect);
