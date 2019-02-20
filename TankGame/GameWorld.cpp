@@ -1,22 +1,44 @@
 #include "GameWorld.h"
 
+std::vector<GameObject*> * GameWorld::gameobjects = new std::vector<GameObject*>;
+std::vector<GameObject*> * GameWorld::addGameobjects = new std::vector<GameObject*>;
+std::vector<GameObject*> * GameWorld::removeGameobjects = new std::vector<GameObject*>;
+
 //Loads Textures into the game
 void GameWorld::LoadTextures()
 {
 	texmgr.loadTexture("PlayerSprite", "Data/PlayerTank.png");
 	texmgr.loadTexture("Background", "Data/Background.png");
 	texmgr.loadTexture("Error", "Data/Error.png");
+	texmgr.loadTexture("Rock1", "Data/Rock1.png");
+	texmgr.loadTexture("Rock2", "Data/Rock2.png");
 }
 
 //Removes Objects from the game
 void GameWorld::Remove()
 {
-	std::vector<GameObject*>::iterator it;
-	for (it = removeGameobjects->begin(); it != removeGameobjects->end(); it++)
+	if (removeGameobjects->size() > 0)
 	{
-		//TODO: Delete objects
+		for (auto it = gameobjects->begin(); it != gameobjects->end(); )
+		{
+			if (std::find(removeGameobjects->begin(), removeGameobjects->end(), *it) != removeGameobjects->end())
+			{
+				delete(*it);
+				it = gameobjects->erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+		//std::vector<GameObject*>::iterator it;
+		//for (it = removeGameobjects->begin(); it != removeGameobjects->end(); it++)
+		//{
+		//	//TODO: Delete objects
+		//	gameobjects->erase((it));
+		//}
+		removeGameobjects->clear();
 	}
-	removeGameobjects->clear();
 }
 
 //Adds objects to the game
@@ -83,8 +105,8 @@ void GameWorld::GameLoop()
 		deltaClock.restart();
 		Update(deltaTime);
 		Draw();
-		Remove();
 		Add();
+		Remove();
 	}
 }
 
@@ -97,9 +119,14 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 
 	GameObject * PlayerObj = new GameObject(sf::Vector2f(250, 250));
-	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", sf::IntRect(0, 0, 28, 40), 30.f));
+	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", sf::IntRect(0, 0, 28, 40), 30.0f));
 	PlayerObj->AddComponent(new Player(PlayerObj));
-	addGameobjects->push_back(PlayerObj);
+	AddGameObject(PlayerObj);
+
+	GameObject * rock = new GameObject(sf::Vector2f(400, 300));
+	rock->AddComponent(new SpriteRenderer(rock, "Rock1", sf::IntRect(0, 0, GetxSize("Rock1"), GetySize("Rock1")), 0.0f));
+	rock->AddComponent(new Rock(rock));
+	AddGameObject(rock);
 
 	GameLoop();
 }
@@ -107,7 +134,8 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 GameWorld::~GameWorld()
 {
-	if (gameobjects)
+	//Not Working
+	/*if (gameobjects)
 	{
 		std::vector<GameObject*>::iterator it;
 		for (it = gameobjects->begin(); it != gameobjects->end(); it++)
@@ -115,5 +143,16 @@ GameWorld::~GameWorld()
 			delete (*it);
 		}
 		gameobjects->clear();
-	}
+	}*/
+}
+
+//makes it so an object is prepared to be added
+void GameWorld::AddGameObject(GameObject * object)
+{
+	addGameobjects->push_back(object);
+}
+
+void GameWorld::AddRemoveGameObject(GameObject * object)
+{
+	removeGameobjects->push_back(object);
 }

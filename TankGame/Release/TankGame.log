@@ -1,8 +1,20 @@
-﻿  GameWorld.cpp
+﻿  Animation.cpp
+  AnimationHandler.cpp
+c:\users\stefan\source\repos\tankgame\tankgame\animationhandler.cpp(32): warning C4018: '>=': signed/unsigned mismatch
+  Component.cpp
+  GameObject.cpp
+  GameWorld.cpp
+  IDrawable.cpp
+  IUpdatable.cpp
+  Player.cpp
   Program.cpp
+  Rock.cpp
+  SpriteRenderer.cpp
+  TextureManager.cpp
+  Transform.cpp
   Generating code
-  19 of 22 functions (86.4%) were compiled, the rest were copied from previous compilation.
-    17 functions were new in current compilation
+  554 of 566 functions (97.9%) were compiled, the rest were copied from previous compilation.
+    545 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   TankGame.vcxproj -> C:\Users\Stefan\source\repos\TankGame\Release\TankGame.exe

@@ -1,2 +1,16 @@
-﻿  Player.cpp
+﻿  Animation.cpp
+  AnimationHandler.cpp
+c:\users\stefan\source\repos\tankgame\tankgame\animationhandler.cpp(32): warning C4018: '>=': signed/unsigned mismatch
+  Component.cpp
+  GameObject.cpp
+  GameWorld.cpp
+  IDrawable.cpp
+  IUpdatable.cpp
+  Player.cpp
+  Program.cpp
+  Rock.cpp
+  SpriteRenderer.cpp
+  TextureManager.cpp
+  Transform.cpp
+  Generating Code...
   TankGame.vcxproj -> C:\Users\Stefan\source\repos\TankGame\Debug\TankGame.exe
