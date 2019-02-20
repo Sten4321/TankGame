@@ -1,20 +1,8 @@
-﻿  Animation.cpp
-  AnimationHandler.cpp
-c:\users\stefan\source\repos\tankgame\tankgame\animationhandler.cpp(32): warning C4018: '>=': signed/unsigned mismatch
-  Component.cpp
-  GameObject.cpp
-  GameWorld.cpp
-  IDrawable.cpp
-  IUpdatable.cpp
-  Player.cpp
-  Program.cpp
-  Rock.cpp
-  SpriteRenderer.cpp
-  TextureManager.cpp
-  Transform.cpp
+﻿  Generater.cpp
+d:\programming repos\tankgame\tankgame\generater.cpp(28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Generating code
-  554 of 566 functions (97.9%) were compiled, the rest were copied from previous compilation.
-    545 functions were new in current compilation
+  0 of 686 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  TankGame.vcxproj -> C:\Users\Stefan\source\repos\TankGame\Release\TankGame.exe
+  TankGame.vcxproj -> D:\Programming Repos\TankGame\Release\TankGame.exe

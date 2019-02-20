@@ -35,6 +35,45 @@ void GameObject::Draw(sf::RenderWindow * window)
 	}
 }
 
+//Calls the Draw method in the components that can be drawed
+void GameObject::OnCollisionEnter(Collider other)
+{
+	std::vector<Component*>::iterator it;
+	for (it = components->begin(); it != components->end(); it++)
+	{
+		if (dynamic_cast<ICollideble*>((*it)))
+		{
+			dynamic_cast<ICollideble*>((*it))->CollisionEnter(other);
+		}
+	}
+}
+
+//Calls the Draw method in the components that can be drawed
+void GameObject::OnCollisionExit(Collider other)
+{
+	std::vector<Component*>::iterator it;
+	for (it = components->begin(); it != components->end(); it++)
+	{
+		if (dynamic_cast<ICollideble*>((*it)))
+		{
+			dynamic_cast<ICollideble*>((*it))->CollisionExit(other);
+		}
+	}
+}
+
+//Calls the Draw method in the components that can be drawed
+void GameObject::OnCollisionStay(Collider other)
+{
+	std::vector<Component*>::iterator it;
+	for (it = components->begin(); it != components->end(); it++)
+	{
+		if (dynamic_cast<ICollideble*>((*it)))
+		{
+			dynamic_cast<ICollideble*>((*it))->CollisionStay(other);
+		}
+	}
+}
+
 //Returns a component if it exist
 Component* GameObject::getComponent(std::string componentName)
 {

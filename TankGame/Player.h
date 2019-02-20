@@ -8,10 +8,11 @@
 #include "SFML/Window.hpp"
 #include "Component.h"
 #include "IUpdatable.h"
+#include "ICollideble.h"
 #include "Transform.h"
 #define GetComponent(x) (dynamic_cast<x*>((*Component::gameObject).getComponent(#x)))
 
-class Player :public Component, public IUpdatable
+class Player :public Component, public IUpdatable, public ICollideble
 {
 private:
 	int health = 100;
@@ -35,6 +36,11 @@ public:
 	void Rotate();
 	sf::Vector2f RotateVector(sf::Vector2f vector);
 	void TranslateMovement(sf::Vector2f Translation, sf::Time deltaTime);
+
+	// Inherited via ICollideble
+	virtual void CollisionEnter(Collider other) override;
+	virtual void CollisionExit(Collider other) override;
+	virtual void CollisionStay(Collider other) override;
 };
 
 #endif

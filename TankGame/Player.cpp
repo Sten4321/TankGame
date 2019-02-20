@@ -112,6 +112,18 @@ void Player::TranslateMovement(sf::Vector2f Translation, sf::Time deltaTime)
 	GetComponent(Transform)->Translate(movementdirection);
 }
 
+void Player::CollisionEnter(Collider other)
+{
+}
+
+void Player::CollisionExit(Collider other)
+{
+}
+
+void Player::CollisionStay(Collider other)
+{
+}
+
 //Updates the player object
 void Player::Update(sf::Time deltaTime)
 {

@@ -8,6 +8,8 @@
 #include "Component.h"
 #include "IUpdatable.h"
 #include "IDrawable.h"
+#include "ICollideble.h"
+#include "Collider.h"
 #include "Transform.h"
 #include "SFML/Graphics.hpp"
 
@@ -23,6 +25,9 @@ public:
 	void Update(sf::Time deltaTime);
 	void Draw(sf::RenderWindow * window);
 	Component* getComponent(std::string componentName);
+	void OnCollisionEnter(Collider other);
+	void OnCollisionExit(Collider other);
+	void OnCollisionStay(Collider other);
 };
 #endif
 

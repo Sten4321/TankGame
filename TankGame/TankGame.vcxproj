@@ -123,9 +123,12 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationHandler.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Generater.cpp" />
+    <ClCompile Include="ICollideble.cpp" />
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="IUpdatable.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -138,9 +141,12 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationHandler.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="Generater.h" />
+    <ClInclude Include="ICollideble.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="Player.h" />

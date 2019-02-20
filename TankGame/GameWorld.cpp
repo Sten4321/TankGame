@@ -3,6 +3,7 @@
 std::vector<GameObject*> * GameWorld::gameobjects = new std::vector<GameObject*>;
 std::vector<GameObject*> * GameWorld::addGameobjects = new std::vector<GameObject*>;
 std::vector<GameObject*> * GameWorld::removeGameobjects = new std::vector<GameObject*>;
+std::vector<Collider*> * GameWorld::colliders = new std::vector<Collider*>;
 
 //Loads Textures into the game
 void GameWorld::LoadTextures()
@@ -31,12 +32,6 @@ void GameWorld::Remove()
 				++it;
 			}
 		}
-		//std::vector<GameObject*>::iterator it;
-		//for (it = removeGameobjects->begin(); it != removeGameobjects->end(); it++)
-		//{
-		//	//TODO: Delete objects
-		//	gameobjects->erase((it));
-		//}
 		removeGameobjects->clear();
 	}
 }
@@ -118,15 +113,9 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 	BackGround.setTexture(texmgr.getRef("Background"));
 
 
-	GameObject * PlayerObj = new GameObject(sf::Vector2f(250, 250));
-	PlayerObj->AddComponent(new SpriteRenderer(PlayerObj, "PlayerSprite", sf::IntRect(0, 0, 28, 40), 30.0f));
-	PlayerObj->AddComponent(new Player(PlayerObj));
-	AddGameObject(PlayerObj);
-
-	GameObject * rock = new GameObject(sf::Vector2f(400, 300));
-	rock->AddComponent(new SpriteRenderer(rock, "Rock1", sf::IntRect(0, 0, GetxSize("Rock1"), GetySize("Rock1")), 0.0f));
-	rock->AddComponent(new Rock(rock));
-	AddGameObject(rock);
+	gen.GeneratePlayer(sf::Vector2f(250, 250));//Make the player
+	gen.GenerateRock(sf::Vector2f(400, 300), GetxSize("Rock1"), GetySize("Rock1"));
+	gen.GenerateRock(sf::Vector2f(800, 600), GetxSize("Rock1"), GetySize("Rock1"));
 
 	GameLoop();
 }
