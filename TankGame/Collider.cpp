@@ -10,12 +10,23 @@ Collider::Collider(GameObject * gameobject) : Component(gameobject)
 
 Collider::~Collider()
 {
+	std::vector<Collider*>::iterator it;
+	for (it = GameWorld::colliders->begin(); it != GameWorld::colliders->end(); it++)
+	{
+		if (*it == this)
+		{
+			GameWorld::colliders->erase(it);
+			break;
+		}
+	}
 }
 
 sf::CircleShape Collider::CollisionBox()
 {
 	sf::CircleShape collisionbox;
-	collisionbox.setRadius(GetComponent(SpriteRenderer)->spriteRect.width / 2);
+
+	collisionbox.setRadius((float)(GetComponent(SpriteRenderer)->spriteRect.width / 2));
+
 	collisionbox.setPosition(GetComponent(Transform)->position.x, GetComponent(Transform)->position.y);
 	return collisionbox;
 }

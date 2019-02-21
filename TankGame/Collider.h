@@ -22,6 +22,8 @@ public:
 	bool doCollisionChecks = true;
 	std::vector<Collider*> otherColliders = std::vector<Collider*>();
 	std::vector<Collider*> removeOtherColliders = std::vector<Collider*>();
+	/*Vector since i need a container of unspecified size,
+	that may or may not grow (or shrink)*/
 	sf::CircleShape CollisionBox();
 	void CheckCollision();
 

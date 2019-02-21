@@ -38,7 +38,7 @@ public:
 	GameWorld(sf::RenderWindow * window);
 	~GameWorld();
 	TextureManager& texmgr = TextureManager::getInstance();
-	Generater & gen = Generater::getInstance();
+	static Generater & gen;
 	static void AddGameObject(GameObject* object);
 	static void AddRemoveGameObject(GameObject* object);
 	static std::vector<Collider*> * colliders;

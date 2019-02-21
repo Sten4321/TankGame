@@ -1,6 +1,6 @@
 #include "Player.h"
-#include "Transform.h"
 #include "SpriteRenderer.h"
+#include "GameWorld.h"
 
 void Player::AddAnimations()
 {
@@ -22,6 +22,7 @@ Player::Player(GameObject * gameobject) : Component(gameobject)
 
 Player::~Player()
 {
+
 }
 
 int Player::GetHealth()
@@ -35,17 +36,18 @@ void Player::SetHealth(int healthChange)
 	if (health < 0)
 	{
 		health = 0;
+		Die();
 	}
-	if (health > 100)
+	if (health > maxhealth)
 	{
-		health = 100;
+		health = maxhealth;
 	}
 }
 
 //handles player death
 void Player::Die()
 {
-	//TODO: Implement Die
+	GameWorld::AddRemoveGameObject(this->gameObject);
 }
 
 //Handles movement for the player
@@ -124,6 +126,18 @@ void Player::CollisionStay(Collider other)
 {
 }
 
+void Player::Shoot()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Comma))
+	{
+		if (timePassed >= timeStamp + fireDelay)
+		{
+			GameWorld::gen.GenerateBulletBig(GetComponent(Transform)->position, rotation);
+			timeStamp = timePassed;
+		}
+	}
+}
+
 //Updates the player object
 void Player::Update(sf::Time deltaTime)
 {
@@ -132,4 +146,6 @@ void Player::Update(sf::Time deltaTime)
 	translation = Movement(translation);
 	translation = RotateVector(translation);
 	TranslateMovement(translation, deltaTime);
+	Shoot();
+	timePassed += deltaTime.asSeconds();
 }

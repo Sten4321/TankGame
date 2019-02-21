@@ -4,20 +4,30 @@ std::vector<GameObject*> * GameWorld::gameobjects = new std::vector<GameObject*>
 std::vector<GameObject*> * GameWorld::addGameobjects = new std::vector<GameObject*>;
 std::vector<GameObject*> * GameWorld::removeGameobjects = new std::vector<GameObject*>;
 std::vector<Collider*> * GameWorld::colliders = new std::vector<Collider*>;
+Generater & GameWorld::gen = Generater::getInstance();
 
 //Loads Textures into the game
 void GameWorld::LoadTextures()
 {
-	texmgr.loadTexture("PlayerSprite", "Data/PlayerTank.png");
-	texmgr.loadTexture("Background", "Data/Background.png");
 	texmgr.loadTexture("Error", "Data/Error.png");
+
+	texmgr.loadTexture("Background", "Data/Background.png");
+
+	texmgr.loadTexture("PlayerSprite", "Data/PlayerTank.png");
+
 	texmgr.loadTexture("Rock1", "Data/Rock1.png");
 	texmgr.loadTexture("Rock2", "Data/Rock2.png");
+
+	texmgr.loadTexture("BasicBullet", "Data/BasicBullet.png");
+	texmgr.loadTexture("BiggerBullet", "Data/BiggerBullet.png");
+
+	texmgr.loadTexture("TowerBasic", "Data/TowerBasic.png");
 }
 
 //Removes Objects from the game
 void GameWorld::Remove()
 {
+	//Extreamly Ineffecient
 	if (removeGameobjects->size() > 0)
 	{
 		for (auto it = gameobjects->begin(); it != gameobjects->end(); )
@@ -102,6 +112,7 @@ void GameWorld::GameLoop()
 		Draw();
 		Add();
 		Remove();
+		//std::cout << deltaTime.asSeconds() << "\n";
 	}
 }
 
@@ -114,8 +125,9 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 
 	gen.GeneratePlayer(sf::Vector2f(250, 250));//Make the player
-	gen.GenerateRock(sf::Vector2f(400, 300), GetxSize("Rock1"), GetySize("Rock1"));
-	gen.GenerateRock(sf::Vector2f(800, 600), GetxSize("Rock1"), GetySize("Rock1"));
+	gen.GenerateRock(sf::Vector2f(400, 300), (int)GetxSize("Rock1"), (int)GetySize("Rock1"));
+	gen.GenerateRock(sf::Vector2f(800, 600), (int)GetxSize("Rock1"), (int)GetySize("Rock1"));
+	gen.GenerateTower(sf::Vector2f(900, 400));//tower
 
 	GameLoop();
 }
@@ -123,7 +135,7 @@ GameWorld::GameWorld(sf::RenderWindow * window)
 
 GameWorld::~GameWorld()
 {
-	//Not Working
+	//No need
 	/*if (gameobjects)
 	{
 		std::vector<GameObject*>::iterator it;

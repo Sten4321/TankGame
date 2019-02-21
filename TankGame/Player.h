@@ -15,12 +15,18 @@
 class Player :public Component, public IUpdatable, public ICollideble
 {
 private:
-	int health = 100;
+	int maxhealth = 1000;
+	int health = 1000;
 	float rotation = 0;
 	int movespeed = 120;
 	float rotateSpeed = 1.7f;
 	const double PI = 3.1415927;
+	float timeStamp = 0;
+	float timePassed = 0;
+	float fireDelay = 1;
 	void AddAnimations();
+	void Shoot();
+	void Die();
 public:
 	Player(GameObject * gameobject = nullptr);
 	~Player();
@@ -31,7 +37,6 @@ public:
 	// Inherited via IUpdatable
 	virtual void Update(sf::Time deltaTime) override;
 
-	void Die();
 	sf::Vector2f Movement(sf::Vector2f translation);
 	void Rotate();
 	sf::Vector2f RotateVector(sf::Vector2f vector);
